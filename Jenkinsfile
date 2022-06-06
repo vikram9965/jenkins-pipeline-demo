@@ -1,28 +1,18 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      steps {
-        echo 'I am in Build Phase'
-      }
-    }
-     
-    stage('Test') {
-      steps {
-        echo 'I am in Test Phase'
-      }
-    }
-     
-    stage('Deploy') {
-      steps {
-        echo 'I am in Deploy Phase'
-      }
-   }
-    
-    stage('monitoring') {
-      steps {
-        echo 'I am in monitoring Phase'
-      }
-    }
-  }
+ agent any
+ parameters {
+   choice(
+     name: 'Env',
+     choices: ['DEV', 'QA', 'UAT', 'PROD'],
+     description: 'Passing the Environment'
+   )
  }
+ stages {
+   stage('Environment') {
+     steps {
+       echo " The environment is ${params.Env}"
+     }
+   }
+   
+ }
+}
