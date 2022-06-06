@@ -17,6 +17,12 @@ pipeline {
       steps {
         echo 'I am in Deploy Phase'
       }
+   }
+    
+    stage('monitoring') {
+      steps {
+        echo 'I am in monitoring Phase'
+      }
     }
   }
  }
